@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio — Full-Stack Developer & Database Architect">
+  <meta name="author" content="Muhamad Ilham Fathony Sulton">
+  <title>Portfolio — Muhamad Ilham Fathony Sulton</title>
+
+  <link rel="icon" href="data:,">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts: Orbitron / Rajdhani / Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Orbitron:wght@600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/animations.css">
+</head>
+<body>
+
+  <!-- ====================================================
+       SCROLL PROGRESS (functional position indicator)
+  ===================================================== -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ====================================================
+       WEBGL HERO (Three.js — 3D astronaut + starfield)
+       Fixed canvas behind everything; the sticky hero text
+       and the opaque content layer paint above it.
+  ===================================================== -->
+  <canvas id="hero3d" aria-hidden="true"></canvas>
+
+  <!-- Loading curtain: held until the GLB is ready to show -->
+  <div id="webglLoader" aria-hidden="true">
+    <div class="webgl-loader-inner">
+      <div class="webgl-spinner" aria-hidden="true"></div>
+      <span class="webgl-loader-label">Memuat Astronot</span>
+      <div class="webgl-bar"><div id="webglProgress"></div></div>
+    </div>
+  </div>
+  <!-- ====================================================
+       NAVIGATION
+  ===================================================== -->
+  <nav class="navbar navbar-expand-lg fixed-top nav-apple" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand brand-logo" href="#hero">Tony</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menu">
+        <i class="bi bi-list text-white fs-4"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link nav-apple-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link nav-apple-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link nav-apple-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link nav-apple-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-cv" href="cv.html">
+              <i class="bi bi-download me-1"></i>Download CV
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====================================================
+       HERO SECTION (pinned — content sections glide over it)
+       The 3D astronaut lives in the #hero3d canvas behind this
+       text; the copy column is offset left so the two compose.
+  ===================================================== -->
+  <section id="hero" class="hero-section">
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="container hero-container" id="heroContent">
+      <div class="row justify-content-center">
+        <div class="col-lg-9 col-xl-8 text-center hero-copy">
+
+          <div class="hero-badge mb-4">
+            <span class="badge-dot"></span>
+            <span>Open to Opportunities</span>
+          </div>
+
+          <h1 class="hero-title mb-3">
+            Hi, I'm <span class="gradient-text" id="typewriter"></span><span class="typewriter-cursor"></span>
+          </h1>
+
+          <p class="hero-subtitle mb-3">Full-Stack Developer &amp; Database Architect</p>
+
+          <p class="hero-desc mx-auto mb-5">
+            Membangun solusi digital yang efisien dengan Python, Django, Flask, dan arsitektur
+            database yang kokoh. Menjelajahi semesta kode — satu project sekaligus.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary-apple me-3 mb-3">
+              Lihat Projects
+            </a>
+            <a href="cv.html" class="btn btn-outline-apple mb-3">
+              <i class="bi bi-download me-2"></i>Download CV
+            </a>
+          </div>
+
+          <div class="tech-badges mt-4">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Django</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">MySQL</span>
+            <span class="tech-badge">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+      <div class="scroll-mouse">
+        <div class="scroll-dot"></div>
+      </div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       ABOUT SECTION
+  ===================================================== -->
+  <main id="content">
+  <section id="about" class="section-apple section-about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <!-- Photo -->
+        <div class="col-lg-5 reveal-item">
+          <div class="photo-stage" id="photoStage">
+            <div class="photo-ring" aria-hidden="true"></div>
+            <div class="photo-frame" id="photoFrame">
+              <img src="assets/images/profile/me.jpg" alt="Foto Muhamad Ilham Fathony Sulton" width="480" height="480" id="profilePhoto">
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="col-lg-7">
+          <div class="reveal-item">
+            <span class="section-label">// ABOUT ME</span>
+            <h2 class="section-title">Menjelajahi Semesta <span class="gradient-text">Digital</span></h2>
+            <p class="about-text">
+              Seorang developer yang bersemangat menciptakan solusi teknologi yang efisien dan elegan.
+              Dengan keahlian di berbagai teknologi web dan database, aku selalu berusaha menghadirkan
+              produk yang tidak hanya berfungsi dengan baik, tetapi juga memberikan pengalaman pengguna
+              yang luar biasa.
+            </p>
+            <p class="about-text">
+              Ketika tidak sedang <em>coding</em>, aku senang merancang antarmuka di Figma, mendesain
+              arsitektur database yang optimal, dan terus belajar teknologi baru.
+            </p>
+
+            <div class="about-stats row mt-4 mb-4">
+              <div class="col-4 text-center">
+                <div class="stat-number gradient-text counter-stat" data-target="11">0</div>
+                <div class="stat-label">Skills</div>
+              </div>
+              <div class="col-4 text-center">
+                <div class="stat-number gradient-text counter-stat" data-target="5">0</div>
+                <div class="stat-label">Projects</div>
+              </div>
+              <div class="col-4 text-center">
+                <div class="stat-number gradient-text counter-stat" data-target="2">0</div>
+                <div class="stat-label">Years Exp</div>
+              </div>
+            </div>
+
+            <a href="cv.html" class="btn btn-primary-apple btn-sm">
+              <i class="bi bi-download me-2"></i>Download CV
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SKILLS SECTION
+  ===================================================== -->
+  <section id="skills" class="section-apple section-skills">
+    <div class="skills-rings" aria-hidden="true">
+      <div class="skills-ring r1"></div>
+      <div class="skills-ring r2"></div>
+      <div class="skills-ring r3"></div>
+    </div>
+
+    <div class="container position-relative">
+
+      <div class="text-center mb-4 reveal-item">
+        <span class="section-label">// SKILL SET</span>
+        <h2 class="section-title">Senjata di <span class="gradient-text">Arsenalku</span></h2>
+        <p class="section-desc">Teknologi yang aku kuasai untuk membangun solusi digital</p>
+      </div>
+
+      <div class="skill-filter text-center mb-5 reveal-item">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="language">Languages</button>
+        <button class="filter-btn" data-filter="framework">Frameworks</button>
+        <button class="filter-btn" data-filter="database">Databases</button>
+        <button class="filter-btn" data-filter="tools">Tools</button>
+      </div>
+
+      <div class="row g-4" id="skillsGrid">
+
+        <!-- ===== LANGUAGES ===== -->
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="language">
+          <div class="skill-card" data-level="90" data-color="#3776AB">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#3776AB;">
+                <i class="bi bi-filetype-py"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Python</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="90" style="--sc:#3776AB;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="language">
+          <div class="skill-card" data-level="88" data-color="#E34F26">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#E34F26;">
+                <i class="bi bi-filetype-html"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">HTML / CSS</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="88" style="--sc:#E34F26;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="language">
+          <div class="skill-card" data-level="75" data-color="#f89820">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#f89820;">
+                <i class="bi bi-cup-hot"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Java</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="75" style="--sc:#f89820;"></div>
+                </div>
+                <span class="skill-level-badge badge-intermediate">Intermediate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FRAMEWORKS ===== -->
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="framework">
+          <div class="skill-card" data-level="82" data-color="#44b78b">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#44b78b;">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Django</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="82" style="--sc:#44b78b;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="framework">
+          <div class="skill-card" data-level="85" data-color="#dfe7ef">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#dfe7ef;">
+                <i class="bi bi-flask"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Flask</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="85" style="--sc:#dfe7ef;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="framework">
+          <div class="skill-card" data-level="88" data-color="#7952B3">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#7952B3;">
+                <i class="bi bi-bootstrap-reboot"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Bootstrap</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="88" style="--sc:#7952B3;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== DATABASES ===== -->
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="database">
+          <div class="skill-card" data-level="85" data-color="#4479A1">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#4479A1;">
+                <i class="bi bi-database-fill"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">MySQL</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="85" style="--sc:#4479A1;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="database">
+          <div class="skill-card" data-level="80" data-color="#c0392b">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#c0392b;">
+                <i class="bi bi-database-fill-check"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">MariaDB</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="80" style="--sc:#c0392b;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="database">
+          <div class="skill-card" data-level="82" data-color="#ff9f43">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#ff9f43;">
+                <i class="bi bi-diagram-3"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Database Design</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="82" style="--sc:#ff9f43;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TOOLS ===== -->
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="tools">
+          <div class="skill-card" data-level="75" data-color="#F24E1E">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#F24E1E;">
+                <i class="bi bi-palette-fill"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Figma</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="75" style="--sc:#F24E1E;"></div>
+                </div>
+                <span class="skill-level-badge badge-intermediate">Intermediate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-4 skill-col" data-category="tools">
+          <div class="skill-card" data-level="85" data-color="#F1502F">
+            <div class="skill-card-inner">
+              <div class="skill-icon" style="--sc:#F1502F;">
+                <i class="bi bi-git"></i>
+              </div>
+              <div class="skill-info">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="skill-name">Git &amp; GitHub</span>
+                  <span class="skill-percent"><span class="counter">0</span>%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="85" style="--sc:#F1502F;"></div>
+                </div>
+                <span class="skill-level-badge badge-advanced">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /skillsGrid -->
+    </div>
+  </section>
+
+  <!-- ====================================================
+       PROJECTS SECTION
+  ===================================================== -->
+  <section id="projects" class="section-apple">
+    <div class="container">
+      <div class="text-center mb-5 reveal-item">
+        <span class="section-label">// MY WORK</span>
+        <h2 class="section-title">Project <span class="gradient-text">Terbaiku</span></h2>
+        <p class="section-desc">Beberapa karya yang telah aku bangun dari nol</p>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Project 1 -->
+        <div class="col-lg-4 col-md-6 reveal-item">
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-tagline">Discord Bot</span>
+              <div class="project-links">
+                <a href="https://github.com/Edzard9/XELION-DISCORD-BOT" target="_blank" rel="noopener" class="project-link-btn" title="GitHub">
+                  <i class="bi bi-github"></i>
+                </a>
+                <span class="project-link-btn is-coming" title="Demo belum tersedia">
+                  <i class="bi bi-clock"></i>
+                </span>
+              </div>
+            </div>
+            <h3 class="project-title">Xelion Discord Bot</h3>
+            <p class="project-desc">
+              Bot Discord yang aku bangun sendiri dari nol — gabungan fitur hiburan,
+              pencarian informasi, dan integrasi AI. Strukturnya modular (folder
+              <em>commands/</em> dan <em>utils/</em>) dengan token &amp; API key yang
+              dipisah ke file config.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">discord.py</span>
+              <span class="project-tag">AI API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="col-lg-4 col-md-6 reveal-item">
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-tagline">Desktop App</span>
+              <div class="project-links">
+                <a href="https://github.com/Edzard9/Heytech_computer" target="_blank" rel="noopener" class="project-link-btn" title="GitHub">
+                  <i class="bi bi-github"></i>
+                </a>
+                <span class="project-link-btn is-coming" title="Demo belum tersedia">
+                  <i class="bi bi-clock"></i>
+                </span>
+              </div>
+            </div>
+            <h3 class="project-title">Heytech Computer</h3>
+            <p class="project-desc">
+              Final project mata kuliah Pemrograman Berorientasi Objek: aplikasi toko
+              komputer untuk manajemen produk, transaksi, pembuatan QR code, dan cetak
+              bukti pembayaran — semua datanya disimpan ke database MySQL.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">OOP</span>
+              <span class="project-tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-lg-4 col-md-6 reveal-item">
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-tagline">System Tool</span>
+              <div class="project-links">
+                <a href="https://github.com/Edzard9/Server-Monitor-Portable" target="_blank" rel="noopener" class="project-link-btn" title="GitHub">
+                  <i class="bi bi-github"></i>
+                </a>
+                <span class="project-link-btn is-coming" title="Demo belum tersedia">
+                  <i class="bi bi-clock"></i>
+                </span>
+              </div>
+            </div>
+            <h3 class="project-title">Server Monitor Portable</h3>
+            <p class="project-desc">
+              Tool monitoring sistem ringan yang menampilkan CPU, RAM, dan pemakaian disk
+              secara real-time lewat dashboard web. Dikemas sebagai satu file
+              <em>.exe</em> lewat PyInstaller — jalan tanpa install Python di mesin target.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Flask</span>
+              <span class="project-tag">psutil</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-5 reveal-item">
+        <a href="https://github.com/Edzard9" target="_blank" rel="noopener" class="btn btn-outline-apple">
+          <i class="bi bi-github me-2"></i>Lihat Semua di GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       CONTACT SECTION
+  ===================================================== -->
+  <section id="contact" class="section-apple section-contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-5 reveal-item">
+            <span class="section-label">// GET IN TOUCH</span>
+            <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+            <p class="section-desc">Ada project menarik atau sekadar ingin menyapa? Jangan ragu menghubungi aku!</p>
+          </div>
+
+          <div class="contact-card reveal-item">
+            <form id="contactForm" novalidate>
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <label class="form-label-apple" for="cfName">Nama</label>
+                  <input type="text" class="form-control input-apple" id="cfName" name="name" placeholder="Nama Kamu" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label-apple" for="cfEmail">Email</label>
+                  <input type="email" class="form-control input-apple" id="cfEmail" name="email" placeholder="email@domain.com" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label-apple" for="cfSubject">Subject</label>
+                  <input type="text" class="form-control input-apple" id="cfSubject" name="subject" placeholder="Subject">
+                </div>
+                <div class="col-12">
+                  <label class="form-label-apple" for="cfMessage">Pesan</label>
+                  <textarea class="form-control input-apple" id="cfMessage" name="message" rows="5" placeholder="Tulis pesanmu di sini..." required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary-apple w-100" id="sendBtn">
+                    <i class="bi bi-send me-2"></i>Kirim Pesan
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="text-center mt-4 reveal-item">
+            <a href="cv.html" class="btn btn-outline-apple btn-sm">
+              <i class="bi bi-file-earmark-person me-2"></i>Download CV Saya
+            </a>
+          </div>
+
+          <div class="social-links text-center mt-5 reveal-item">
+            <a href="https://github.com/Edzard9" target="_blank" rel="noopener" class="social-link" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/tony-ilham/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-link" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="mailto:muhammadilhamfathonysulton@gmail.com" class="social-link" title="Email">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ====================================================
+       FOOTER
+  ===================================================== -->
+  <footer class="footer-apple">
+    <div class="container text-center">
+      <p class="footer-text">
+        Crafted among the stars by
+        <strong class="gradient-text">Muhamad Ilham Fathony Sulton</strong>
+      </p>
+      <p class="footer-sub">© <span id="year">2026</span> · Built with Python, Django &amp; lots of coffee</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- GSAP + ScrollTrigger — scroll choreography for the 3D hero -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script type="module" src="src/js/astronaut3d.js"></script>
+  <script src="src/js/main.js"></script>
+</body>
+</html>

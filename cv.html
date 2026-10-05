@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Muhamad Ilham Fathony Sulton</title>
+
+  <link rel="icon" href="data:,">
+
+  <!-- Bootstrap Icons (contact glyphs + toolbar) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/cv.css">
+</head>
+<body>
+
+  <!-- ====================================================
+       SCREEN TOOLBAR (hidden in print)
+  ===================================================== -->
+  <div class="cv-toolbar no-print">
+    <a href="index.html" class="cv-toolbar-btn">
+      <i class="bi bi-arrow-left me-1"></i> Portfolio
+    </a>
+    <button class="cv-toolbar-btn cv-toolbar-primary" id="downloadBtn">
+      <i class="bi bi-download me-1"></i> Download PDF
+    </button>
+  </div>
+
+  <!-- ====================================================
+       A4 SHEET
+  ===================================================== -->
+  <main class="cv-sheet" id="cvSheet">
+
+    <!-- HEADER -->
+    <header class="cv-header">
+      <div class="cv-photo-box">
+        <img src="assets/images/profile/me.jpg" alt="Foto Muhamad Ilham Fathony Sulton">
+      </div>
+      <div class="cv-identity">
+        <h1>Muhamad Ilham Fathony Sulton</h1>
+        <p class="cv-role">Full-Stack Developer &amp; Database Architect</p>
+        <p class="cv-tagline">
+          Membangun solusi digital yang efisien dengan Python, Django, Flask,
+          dan arsitektur database yang kokoh.
+        </p>
+      </div>
+    </header>
+
+    <div class="cv-body">
+
+      <!-- SIDEBAR -->
+      <aside class="cv-sidebar">
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Contact</h2>
+          <ul class="cv-contact-list">
+            <li><i class="bi bi-envelope"></i><span>muhammadilhamfathonysulton@gmail.com</span></li>
+            <li><i class="bi bi-geo-alt"></i><span>Indonesia</span></li>
+            <li><a href="https://github.com/Edzard9" class="cv-link"><i class="bi bi-github"></i><span>github.com/Edzard9</span></a></li>
+            <li><a href="https://linkedin.com/in/tony-ilham/" class="cv-link"><i class="bi bi-linkedin"></i><span>linkedin.com/in/tony-ilham</span></a></li>
+          </ul>
+        </section>
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Technical Skills</h2>
+
+          <div class="cv-skill-group">
+            <h3 class="cv-skill-cat">Languages</h3>
+            <div class="cv-skill"><span>Python</span><span class="cv-dots" data-level="5"></span></div>
+            <div class="cv-skill"><span>HTML / CSS</span><span class="cv-dots" data-level="5"></span></div>
+            <div class="cv-skill"><span>Java</span><span class="cv-dots" data-level="3"></span></div>
+          </div>
+
+          <div class="cv-skill-group">
+            <h3 class="cv-skill-cat">Frameworks</h3>
+            <div class="cv-skill"><span>Django</span><span class="cv-dots" data-level="4"></span></div>
+            <div class="cv-skill"><span>Flask</span><span class="cv-dots" data-level="4"></span></div>
+            <div class="cv-skill"><span>Bootstrap</span><span class="cv-dots" data-level="5"></span></div>
+          </div>
+
+          <div class="cv-skill-group">
+            <h3 class="cv-skill-cat">Databases</h3>
+            <div class="cv-skill"><span>MySQL</span><span class="cv-dots" data-level="4"></span></div>
+            <div class="cv-skill"><span>MariaDB</span><span class="cv-dots" data-level="4"></span></div>
+            <div class="cv-skill"><span>Database Design</span><span class="cv-dots" data-level="4"></span></div>
+          </div>
+
+          <div class="cv-skill-group">
+            <h3 class="cv-skill-cat">Tools</h3>
+            <div class="cv-skill"><span>Figma</span><span class="cv-dots" data-level="3"></span></div>
+            <div class="cv-skill"><span>Git &amp; GitHub</span><span class="cv-dots" data-level="4"></span></div>
+          </div>
+        </section>
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Soft Skills</h2>
+          <ul class="cv-list">
+            <li>Problem solving</li>
+            <li>Collaboration &amp; communication</li>
+            <li>Continuous learning</li>
+            <li>Attention to detail</li>
+          </ul>
+        </section>
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Languages</h2>
+          <ul class="cv-list">
+            <li>Indonesian — Native</li>
+            <li>English — Professional</li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <!-- MAIN COLUMN -->
+      <div class="cv-main">
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Profile</h2>
+          <p class="cv-text">
+            Developer yang bersemangat menciptakan solusi teknologi yang efisien dan elegan.
+            Dengan keahlian di teknologi web dan database, saya menghadirkan produk yang
+            berfungsi dengan baik dan memberikan pengalaman pengguna yang luar biasa.
+            Terbiasa merancang arsitektur database yang optimal dan mengimplementasikan
+            fitur end-to-end.
+          </p>
+        </section>
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Experience</h2>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Xelion Discord Bot</h3>
+              <span class="cv-entry-tech">Python · discord.py · AI API</span>
+            </div>
+            <p class="cv-entry-org">Personal Project</p>
+            <ul class="cv-list">
+              <li>Bot Discord yang dibangun dari nol — menggabungkan fitur hiburan,
+                pencarian informasi, dan integrasi AI; struktur modular dengan token
+                &amp; API key yang dipisah ke file config.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Heytech Computer</h3>
+              <span class="cv-entry-tech">Python · OOP · MySQL</span>
+            </div>
+            <p class="cv-entry-org">Final Project Pemrograman Berorientasi Objek</p>
+            <ul class="cv-list">
+              <li>Aplikasi desktop toko komputer untuk manajemen produk, transaksi,
+                pembuatan QR code, dan cetak bukti pembayaran — seluruh data
+                disimpan ke database MySQL.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Database Design — Rumah Sakit</h3>
+              <span class="cv-entry-tech">MySQL · ERD · Normalisasi</span>
+            </div>
+            <p class="cv-entry-org">Project UAS — Sistem Basis Data</p>
+            <ul class="cv-list">
+              <li>Merancang database sederhana untuk rumah sakit (pasien, dokter,
+                rawat jalan, rekam medis) dengan normalisasi hingga 3NF.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Projects</h2>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Server Monitor Portable</h3>
+              <span class="cv-entry-meta">
+                <span class="cv-status is-done">Completed</span>
+                <span class="cv-entry-tech">Python · Flask · psutil</span>
+              </span>
+            </div>
+            <ul class="cv-list">
+              <li>Tool monitoring sistem ringan — CPU, RAM, dan pemakaian disk
+                secara real-time lewat dashboard web; dikemas sebagai satu file
+                <em>.exe</em> lewat PyInstaller sehingga jalan tanpa install Python.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Kawal-Fasilitas</h3>
+              <span class="cv-entry-meta">
+                <span class="cv-status is-active">On Process</span>
+                <span class="cv-entry-tech">PWA · Cloud · Frontend</span>
+              </span>
+            </div>
+            <p class="cv-entry-org">Team Project — Frontend Developer</p>
+            <ul class="cv-list">
+              <li>Platform PWA yang menjembatani warga dan pemerintah desa/kelurahan
+                dalam melaporkan, memvalidasi, dan memantau progres perbaikan
+                fasilitas umum secara transparan dan real-time, dari tahap pelaporan
+                hingga penyelesaian.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">Argenetic Web</h3>
+              <span class="cv-entry-meta">
+                <span class="cv-status is-active">On Process</span>
+                <span class="cv-entry-tech">HTML · CSS · PHP · JavaScript</span>
+              </span>
+            </div>
+            <ul class="cv-list">
+              <li>Kumpulan template kebutuhan web yang siap pakai untuk mempercepat
+                pembangunan aplikasi web.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="cv-block">
+          <h2 class="cv-block-title">Education</h2>
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <h3 class="cv-entry-title">S1 Teknik Informatika</h3>
+              <span class="cv-entry-date">2024 — Expected 2028</span>
+            </div>
+            <p class="cv-entry-org">Universitas Nusantara PGRI Kediri · Jawa Timur</p>
+            <ul class="cv-list">
+              <li>Semester 5 — fokus pada pemrograman web, basis data, dan
+                pemrograman berorientasi objek.</li>
+            </ul>
+          </div>
+        </section>
+
+      </div><!-- /cv-main -->
+    </div><!-- /cv-body -->
+  </main>
+
+  <script src="src/js/cv.js"></script>
+</body>
+</html>

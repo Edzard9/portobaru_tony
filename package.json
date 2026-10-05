@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@gltf-transform/core": "^4.5.0",
+    "@gltf-transform/extensions": "^4.5.0",
+    "@gltf-transform/functions": "^4.5.0",
+    "meshoptimizer": "^1.2.0"
+  },
+  "dependencies": {
+    "three": "^0.186.0"
+  }
+}
